@@ -1,0 +1,24 @@
+{
+  "name": "vite-boolflix",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/roboto-slab": "^5.0.20",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "font-awesome": "^4.7.0",
+    "google-fonts": "^1.0.0",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.77.5",
+    "vite": "^5.2.0"
+  }
+}
