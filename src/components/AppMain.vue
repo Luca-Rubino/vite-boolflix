@@ -1,5 +1,8 @@
 <script>
 
+// Api themoviedb
+// Api-key = ?api_key=68ea9ce68b5006f086ea95c89dbfabe9
+
 export default {
   // Properties returned from data() become reactive state
   // and will be exposed on `this`.
@@ -9,7 +12,7 @@ export default {
         { titolo: 'Il re leone', titoloOriginale: 'The lion king', lingua: 'Italiano', voto: '9.5326871', img: 'https://pad.mymovies.it/filmclub/2017/04/249/locandina.jpg'},
         { titolo: 'Madagascar', titoloOriginale: 'Madagascar', lingua: 'Italiano', voto: '7.824871', img: 'https://pad.mymovies.it/filmclub/2005/05/064/locandinapg1.jpg'},
       ],
-      item: Object
+      index: 0,
     }
   },
 
@@ -23,8 +26,8 @@ export default {
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
   mounted() {
-    console.log(this.films[0].titolo)
-    console.log(this.films[1].titolo)
+    console.log(this.films[0].titolo);
+    console.log(this.films[1].titolo);
   }
 }
 
@@ -37,8 +40,9 @@ export default {
     <section>
 
       <div>
-        <input type="text" name="searchbar" id="searchbar">
-        <button>Invia</button>
+        <label for="searchbar">Cerca il tuo film:</label>
+        <input id="searchbar" type="text" name="searchbar" placeholder="Nome film">
+        <input type="button" value="Cerca"/>
       </div>
 
       <div>
@@ -65,12 +69,17 @@ export default {
 section {
   div {
     @include margin-min;
+
+    label {
+      margin-right: .3rem
+    }
   }
   ul {
     @include margin-min;
     width: 25rem;
     padding: .5rem;
-    border: 1px solid black;
+    border: 2px solid rgb(215, 198, 6);
+    border-radius: 25px;
 
     li {
       list-style: none;
@@ -78,6 +87,13 @@ section {
 
       img {
         width: 25rem;
+        height: 35rem;
+        border-radius: 25px;
+        position: relative;
+      }
+      img:active {
+        bottom: 1px;
+        top: 1px;
       }
     }
     li:last-of-type {
@@ -85,6 +101,4 @@ section {
     }
   }
 }
-
-
 </style>
