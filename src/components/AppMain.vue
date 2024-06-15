@@ -62,14 +62,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/general.scss' as *;
+@use '../styles/partials/mixin' as *;
+@use '../styles/partials/variants' as *;
 
 section{
-  margin-left: 1.5rem;
+  @include margin-min;
 }
 
 ul{
-  margin-left: 2rem;
-  margin-bottom: 1rem;
+  @include margin-min;
 
   li{
     list-style: none
