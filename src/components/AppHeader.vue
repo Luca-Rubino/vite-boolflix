@@ -11,9 +11,16 @@
 
 </template>
 
-<style scoped>
-h1 {
-  color: purple;
-  background-color: brown;
+<style lang="scss" scoped>
+@use '../styles/partials/mixin' as *;
+
+header{
+  @include d-flex-center;
+  color: darkslateblue;
+  background-color: darkcyan;
+
+  h1 {
+    padding: 1rem;
+  }
 }
 </style>

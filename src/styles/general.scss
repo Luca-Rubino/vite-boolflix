@@ -1,3 +1,6 @@
+// font-google Roboto Slab
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +9,7 @@
 
 body {
     background-color: cyan;
-    color: whitesmoke;
+    color: rgb(122, 122, 122);
     font-family: "Roboto Slab", serif;
     font-optical-sizing: auto;
     font-weight: 500;
