@@ -4,19 +4,57 @@ import AppHeader from './components/AppHeader.vue';
 
 </script>
 
+<script>
+
+export default {
+  // Properties returned from data() become reactive state
+  // and will be exposed on `this`.
+  data() {
+    return {
+      films: [
+        {
+          titolo: 'Il re leone',
+          titoloOriginale: 'The lion king',
+          lingua: 'Italiano',
+          voto: '7.5326871',
+        }
+      ],
+      index: 0,
+    }
+  },
+
+  // Methods are functions that mutate state and trigger updates.
+  // They can be bound as event handlers in templates.
+  methods: {
+
+  },
+
+  // Lifecycle hooks are called at different stages
+  // of a component's lifecycle.
+  // This function will be called when the component is mounted.
+  mounted() {
+    console.log(this.films.titolo)
+  }
+}
+
+</script>
+
 <template>
 
   <AppHeader/>
   <main>
-    <input type="text" name="searchbar" id="searchbar">
-    <button>Invia</button>
+
+    <section>
+      <input type="text" name="searchbar" id="searchbar">
+      <button>Invia</button>
+    </section>
 
     <div>
-      <ul>
-        <li>Titolo</li>
-        <li>Titolo Originale</li>
-        <li>Lingua</li>
-        <li>Voto</li>
+      <ul v-if="films" >
+        <li>Titolo: {{ films[index].titolo }}</li>
+        <li>Titolo Originale: {{ films[index].titoloOriginale }}</li>
+        <li>Lingua: {{ films[index].lingua }}</li>
+        <li>Voto: {{ parseInt(Number(films[index].voto)) }}</li>
       </ul>
     </div>
 
@@ -25,9 +63,13 @@ import AppHeader from './components/AppHeader.vue';
 </template>
 
 <style lang="scss">
-@use './styles/general.scss' as *;
-@use './styles/partials/mixin' as *;
-@use './styles/partials/variants' as *;
+@use './styles/general.scss';
+@use './styles/partials/mixin';
+@use './styles/partials/variants';
+
+section{
+  margin-left: 1.5rem;
+}
 
 ul{
   margin-left: 2rem;

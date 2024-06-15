@@ -1,12 +1,15 @@
 <script>
 
 
+
 </script>
 
 <template>
 
   <header>
+    
     <h1>Vite-boolflix</h1>
+
   </header>
 
 </template>
@@ -17,7 +20,6 @@
 header{
   @include d-flex-center;
   color: darkslateblue;
-  background-color: darkcyan;
 
   h1 {
     padding: 1rem;
