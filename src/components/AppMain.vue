@@ -1,7 +1,12 @@
-<script>
+<script setup>
 
-// Api themoviedb
-// Api-key = ?api_key=68ea9ce68b5006f086ea95c89dbfabe9
+import axios from 'axios';
+import { store } from '../store';
+
+</script>
+
+
+<script>
 
 export default {
   // Properties returned from data() become reactive state
@@ -12,14 +17,28 @@ export default {
         { titolo: 'Il re leone', titoloOriginale: 'The lion king', lingua: 'Italiano', voto: '9.5326871', img: 'https://pad.mymovies.it/filmclub/2017/04/249/locandina.jpg'},
         { titolo: 'Madagascar', titoloOriginale: 'Madagascar', lingua: 'Italiano', voto: '7.824871', img: 'https://pad.mymovies.it/filmclub/2005/05/064/locandinapg1.jpg'},
       ],
+      store,
+      ricercaFilm: '',
       index: 0,
+      // Api themoviedb
+      apiKey: 'api_key=68ea9ce68b5006f086ea95c89dbfabe9',
+      queryRicerca: 'ritorno+al+futuro'
     }
   },
 
   // Methods are functions that mutate state and trigger updates.
   // They can be bound as event handlers in templates.
   methods: {
-
+    theMovieDb() {
+    // Make a request for a user with a given ID
+    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=68ea9ce68b5006f086ea95c89dbfabe9&query=ritorno+al+futuro`)
+    .then(function(response) {
+      console.log(response.data.results);
+      movieList = response.data.results;
+    })
+    .catch()
+    .finally();
+    },
   },
 
   // Lifecycle hooks are called at different stages
@@ -28,6 +47,7 @@ export default {
   mounted() {
     console.log(this.films[0].titolo);
     console.log(this.films[1].titolo);
+    console.log(this.theMovieDb)
   }
 }
 
@@ -45,6 +65,19 @@ export default {
         <input type="button" value="Cerca"/>
       </div>
 
+      <div>
+        <ul v-for="(movie, page) in store.movieList" :key="page">
+          <li>
+            <img src="#" alt="">
+          </li>
+          <li>Titolo: {{ movie.title }}</li>
+          <li>Titolo Originale: {{ movie.original_title }}</li>
+          <li>Lingua: {{ movie.original_language }}</li>
+          <li>Voto: {{ parseInt(Number(movie.vote_average)) }}</li>
+        </ul>
+      </div>
+
+      <!-- Elenco di prova -->
       <div>
         <ul v-for="(films, index) in films" :key="index">
           <li>
