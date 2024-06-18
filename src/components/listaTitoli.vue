@@ -41,7 +41,10 @@ export default {
           <li>Lingua:<!--{{ filmLista.original_language }}-->&nbsp;
             <img src="../assets/img/us.jpg" alt="us-flag">
           </li>
-          <li>Voto: {{ parseInt(Number(filmLista.vote_average)) }}</li>
+          <li>Voto: {{ parseInt(Number(filmLista.vote_average)) }}
+            <i v-for="i in (Math.floor(filmLista.vote_average / 2))" class="fa-solid fa-star my-color-yellow"></i>
+            <i v-for="i in (5 - Math.floor(filmLista.vote_average / 2))" class="fa-regular fa-star"></i>
+          </li>
         </ul>
       </div>
 </template>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource-variable/roboto-slab": "^5.0.20",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "font-awesome": "^4.7.0",
