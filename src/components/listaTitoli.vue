@@ -38,7 +38,9 @@ export default {
           </li>
           <li>Titolo: {{ filmLista.title }}</li>
           <li>Titolo Originale: {{ filmLista.original_title }}</li>
-          <li>Lingua: {{ filmLista.original_language }}</li>
+          <li>Lingua:<!--{{ filmLista.original_language }}-->&nbsp;
+            <img src="../assets/img/us.jpg" alt="us-flag">
+          </li>
           <li>Voto: {{ parseInt(Number(filmLista.vote_average)) }}</li>
         </ul>
       </div>
@@ -64,15 +66,22 @@ export default {
       border: 2px solid rgb(215, 198, 6);
       border-radius: 25px;
 
-      li {
-        list-style: none;
-        margin-bottom: .5rem;
-
+      li:nth-of-type(1) {
         img {
           width: 25rem;
           height: 35rem;
           border-radius: 25px;
           position: relative;
+        }
+      }
+
+      li {
+        list-style: none;
+        margin-bottom: .5rem;
+
+        img {
+          width: 25px;
+          height: 15px;
         }
         img:active {
           bottom: 1px;
