@@ -1,5 +1,6 @@
 <script setup>
 
+import listaTitoli from '../components/listaTitoli.vue';
 // import { store } from '../store';
 import axios from 'axios';
 
@@ -20,9 +21,9 @@ export default {
       ],
       index: 0,
       // store,
-      filmLista: {},
-      movieListFiltrataXNome: {},
-      serieTvLista: {},
+      filmLista: [],
+      filtroRicerca: '',
+      serieTvLista: [],
     }
   },
 
@@ -40,6 +41,24 @@ export default {
               console.log(error);
             }
         )},
+        getsearchtv(value) {
+          this.filtroRicerca = value;
+          console.log(this.filtroRicerca)
+          axios.get(`https://api.themoviedb.org/3/search/tv?api_key=68ea9ce68b5006f086ea95c89dbfabe9&query=${this.filtroRicerca}`)
+          .then((response) => {
+              this.serieTvLista=response.data.results;
+              console.log(this.serieTvLista)
+          })
+          .catch(function(error){
+              console.log(error);
+          })
+          .finally(function(){
+          });
+        },
+        created() {
+          this.getDiscoverMovie();
+          this.getsearchtv();
+        },
         },
 
   // Lifecycle hooks are called at different stages
@@ -51,6 +70,7 @@ export default {
     // console.log(store.apiUrl + store.apiKey + '&language=' + store.lang + '&query=' + store.queryRicerca)
     // richiamo i dati presenti nell'Api e li trasferisco in un arrey vuoto in modo da poterli leggere
     this.getDiscoverMovie();
+    this.getsearchtv();
   }
 }
 
@@ -64,19 +84,21 @@ export default {
 
       <div>
         <label for="searchbar">Cerca il tuo film:</label>
-        <input id="searchbar" type="text" name="searchbar" placeholder="Nome film">
+        <input id="searchbar" type="text" name="searchbar" placeholder="Nome film" @change="getsearchtv(filtroRicerca)" :value="filtroRicerca" @keyup.enter="value">
         <input type="button" value="Cerca"/>
       </div>
 
+      <listaTitoli :filmLista="filmLista" :filtroRicerca="filtroRicerca"/>
+
       <div>
-        <ul v-for="(filmLista, page) in filmLista" :key="page">
+        <ul v-for="(serieTvLista, page) in serieTvLista" :key="page">
           <li>
-            <img :src="`https://image.tmdb.org/t/p/original${filmLista.poster_path}`" :alt="filmLista.title">
+            <img :src="`https://image.tmdb.org/t/p/original${serieTvLista.poster_path}`" :alt="serieTvLista.title">
           </li>
-          <li>Titolo: {{ filmLista.title }}</li>
-          <li>Titolo Originale: {{ filmLista.original_title }}</li>
-          <li>Lingua: {{ filmLista.original_language }}</li>
-          <li>Voto: {{ parseInt(Number(filmLista.vote_average)) }}</li>
+          <li>Titolo: {{ serieTvLista.title }}</li>
+          <li>Titolo Originale: {{ serieTvLista.original_title }}</li>
+          <li>Lingua: {{ serieTvLista.original_language }}</li>
+          <li>Voto: {{ parseInt(Number(serieTvLista.vote_average)) }}</li>
         </ul>
       </div>
 
