@@ -31,6 +31,7 @@ export default {
 </script>
 
 <template>
+      <h2>Film Popolari</h2>
       <div>
         <ul v-for="(filmLista, page) in filmLista" :key="page">
           <li>

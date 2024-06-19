@@ -41,8 +41,8 @@ export default {
               console.log(error);
             }
         )},
-        getsearchtv(value) {
-          this.filtroRicerca = value;
+        getsearchtv(event) {
+          this.filtroRicerca = event;
           console.log(this.filtroRicerca)
           axios.get(`https://api.themoviedb.org/3/search/tv?api_key=68ea9ce68b5006f086ea95c89dbfabe9&query=${this.filtroRicerca}`)
           .then((response) => {
@@ -84,14 +84,13 @@ export default {
 
       <div>
         <label for="searchbar">Cerca il tuo film:</label>
-        <input id="searchbar" type="text" name="searchbar" placeholder="Nome film" @change="getsearchtv(filtroRicerca)" :value="filtroRicerca" @keyup.enter="value">
+        <input id="searchbar" type="text" name="searchbar" placeholder="Nome film" v-model="filtroRicerca" @change="getsearchtv(filtroRicerca)" @keyup.enter="value">
         <input type="button" value="Cerca"/>
       </div>
 
-      <listaTitoli :filmLista="filmLista" :filtroRicerca="filtroRicerca"/>
-
       <div>
         <ul v-for="(serieTvLista, page) in serieTvLista" :key="page">
+          <h2>Serie Tv</h2>
           <li>
             <img :src="`https://image.tmdb.org/t/p/original${serieTvLista.poster_path}`" :alt="serieTvLista.title">
           </li>
@@ -101,6 +100,8 @@ export default {
           <li>Voto: {{ parseInt(Number(serieTvLista.vote_average)) }}</li>
         </ul>
       </div>
+
+      <listaTitoli :filmLista="filmLista" :filtroRicerca="filtroRicerca"/>
 
       <!-- Elenco di prova -->
       <!-- <div>
